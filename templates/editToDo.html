@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ToDo Edit</title>
+<link rel="stylesheet" href="/css/main.css">
+<!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- jQuery読み込み -->
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="text-center">
+		<h1>ToDo編集</h1>
+		<div class="container">
+		<span th:replace="TodoList"></span>
+		</div>
+		<div class="container">
+			<div class="col-4">
+				<p>ToDo変更</p>
+				<form action="/ToDoTop/edit" method="post">
+					<table class="table table-bordered">
+						<tr>
+							<th>優先度</th>
+							<th>期限</th>
+							<th>内容</th>
+							<th>ジャンル</th>
+						</tr>
+						<tr>
+							<th><input type="radio" name="priorityId" value=1>高
+								<input type="radio" name="priorityId" value=2 checked>中
+								<input type="radio" name="priorityId" value=3>低</th>
+
+							<th><input type="date" name="doneAt"
+								th:value="${tasks.doneAt}"></th>
+							<th><input type="text" name="content"
+								th:value="${tasks.content}"></th>
+							<th><input type="text" name="typeId"
+								th:value="${type.name}"></th>
+								<th><button type="submit" class="btn btn-default">追加</button></th>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+		<div class="container">
+			<div class="col-4">
+				<button type="button" class="btn btn-default"
+					onclick="location.href='/ToDoTop/list/all'">全表示</button>
+				<button type="button" class="btn btn-default"
+					onclick="location.href='/ToDoTop/list/done'">完了</button>
+				<button type="button" class="btn btn-default"
+					onclick="location.href='/ToDoTop/list/yet'">未完了</button>
+				<br>
+			</div>
+		</div>
+		<a href="/calendar">カレンダーへ</a>
+	</div>
+</body>
+</html>

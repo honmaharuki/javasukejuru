@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ToDo Top</title>
+<link rel="stylesheet" href="/css/main.css">
+<!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<!-- jQuery読み込み -->
+<script
+	src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- BootstrapのJS読み込み -->
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/dada0e4b18.js"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="text-center">
+		<h1>ToDoアプリ</h1>
+		<div class="container">
+			<form action="/ToDoTop/add" class="col-4" method="post">
+				<p>
+					<i class="fas fa-plus"></i> ToDo追加
+				</p>
+				<div class="form-group">
+					<table class="table table-bordered">
+						<tr>
+							<th>優先度</th>
+							<th>期限</th>
+							<th>内容</th>
+							<th>ジャンル</th>
+						</tr>
+						<tr>
+							<th><input type="radio" name="priorityId" value=1>緊急
+								<input type="radio" name="priorityId" value=2 checked>重要<input
+								type="radio" name="priorityId" value=3>普通</th>
+							<th><input type="date" class="form-control" name="doneAt"></th>
+							<th><input type="text" class="form-control" name="content"></th>
+							<th><select class="form-control" name="typeId">
+									<option th:each="type:${types}" th:value="${type.code}">[[${type.name}]]</option>
+							</select></th>
+						</tr>
+					</table>
+				</div>
+				<button type="submit" class="btn btn-default">追加</button>
+			</form>
+		</div>
+		<br>
+		<div class="container">
+			<p class="col-4">
+				<i class="fas fa-search"></i> ToDo並び替え
+			</p>
+			<span th:replace="sortList"></span>
+		</div>
+		<div class="container">
+			<h2>ToDo一覧</h2>
+			<span th:replace="TodoList"></span>
+		</div>
+		<div class="container">
+			<div class="col-4">
+				<button type="button" class="btn btn-default"
+					onclick="location.href='/ToDoTop/list/all'">全表示</button>
+				<button type="button" class="btn btn-default"
+					onclick="location.href='/ToDoTop/list/done'">完了</button>
+				<button type="button" class="btn btn-default"
+					onclick="location.href='/ToDoTop/list/yet'">未完了</button>
+				<br> <a href="/calendar">カレンダーへ</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

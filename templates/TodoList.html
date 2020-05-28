@@ -1,0 +1,31 @@
+<div class="col-4">
+<table class="table table-striped">
+	<tr>
+		<th class="text-center">完了</th>
+		<th class="text-center">優先度</th>
+		<th class="text-center">日付</th>
+		<th class="text-center">内容</th>
+		<th class="text-center">ジャンル</th>
+	<tr th:each="task:${tasks}">
+		<td><span th:text="${task.isDoneCode} == 0 ? ''"></span> <span
+			th:text="${task.isDoneCode} == 1 ? '✔'"></span></td>
+		<td>
+		 <span id="priority1" th:text="${task.priorityId} == 1 ? '緊急'"></span>
+		 <span id="priority2"　th:text="${task.priorityId} == 2 ? '重要'"></span>
+		 <span id="priority3"　th:text="${task.priorityId} == 3 ? '普通'"></span></td>
+		<td th:text="${task.doneAt}"></td>
+		<td th:text="${task.content}"></td>
+		<!-- 回して一致していればそのジャンルの名前を表示 -->
+		<td>
+			<div th:switch="${task.typeId}">
+				<option th:each="type:${types}" th:case="${type.code}"
+					th:text="${type.name}"></option>
+			</div>
+		</td>			
+		<td><a th:href="'/ToDoTop/edit/'+${task.code}"><button type="button" class="btn btn-default"><i class="fas fa-edit"></i> 編集</button></a></td>
+		<td><a th:href="'/ToDoTop/delete/'+${task.code}"><button type="button" class="btn btn-default"><i class="fas fa-trash-alt"></i> 削除</button></a></td>
+		<td><a th:href="'/ToDoTop/done/'+${task.code}"><button type="button" class="btn btn-default"><i class="fas fa-check"></i> 完了</button></a></td>
+	</tr>
+
+</table>
+</div>

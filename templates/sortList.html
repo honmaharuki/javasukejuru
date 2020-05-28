@@ -1,0 +1,30 @@
+<form action="/ToDoTop/sortList" class="col-4" method="post">
+	<div class="form-group">
+		<table class="table table-bordered">
+			<tr>
+				<th>完了</th>
+				<th>優先度</th>
+				<th>日付</th>
+				<th>ジャンル</th>
+			</tr>
+			<tr>
+				<th><select class="form-control" name="isDoneCode">
+						<option value="3">--</option>
+						<option value="0">未達成</option>
+						<option value="1">完了</option>
+				</select></th>
+				<th><select class="form-control" name="priorityId">
+						<option th:value="0">--</option>
+						<option th:each="priorities:${priorities}"
+							th:value="${priorities.code}">[[${priorities.rank}]]</option>
+				</select></th>
+				<th><input type="date" class="form-control" name="doneAt"></th>
+				<th><select class="form-control" name="typeId">
+						<option th:value="0">--</option>
+						<option th:each="type:${types}" th:value="${type.code}">[[${type.name}]]</option>
+				</select></th>
+			</tr>
+		</table>
+	</div>
+		<button type="submit" class="btn btn-default">並び替え</button>
+</form>
